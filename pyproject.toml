@@ -22,10 +22,10 @@ classifiers = [
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
- Processing :: Markup",
-beautifulsoup4>=.0",
-    "requests.0",
-    "downify>=0.11.0",
+ "Textndependencies = [
+    "ifulsoup4>=4.11",
+    "requests>=
+    "markify>=0.11.0",
     "chardet>=5.0.0",
 ]
 
