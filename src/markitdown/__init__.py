@@ -5,6 +5,10 @@ and other file formats into clean, readable Markdown text.
 
 Note: Forked from microsoft/markitdown for personal use and experimentation.
 See https://github.com/microsoft/markitdown for the upstream project.
+
+Personal notes:
+- Commonly used with: MarkItDown().convert("file.pdf").text_content
+- For batch processing, reuse the same MarkItDown() instance (avoids re-init overhead)
 """
 
 from markitdown._markitdown import MarkItDown, DocumentConverter, ConversionResult
