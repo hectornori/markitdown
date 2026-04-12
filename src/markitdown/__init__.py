@@ -11,6 +11,7 @@ Personal notes:
 - For batch processing, reuse the same MarkItDown() instance (avoids re-init overhead)
 - StreamInfo is also useful when converting from in-memory buffers (pass mime_type explicitly)
 - UnsupportedFormatException is handy for graceful error handling in batch jobs
+- When converting HTML, pass mlm_client=None explicitly to skip any LLM image description calls
 """
 
 from markitdown._markitdown import MarkItDown, DocumentConverter, ConversionResult, StreamInfo
@@ -25,3 +26,4 @@ except ImportError:
 
 __version__ = "0.1.0"
 __author__ = "Microsoft (original), personal fork for learning"
+# Last synced with upstream: 2025-01-10
