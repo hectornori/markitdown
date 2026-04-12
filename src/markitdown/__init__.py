@@ -17,6 +17,8 @@ Personal notes:
     md = MarkItDown()
     result = md.convert(path)
     text = (result.text_content or "").strip()
+- UnsupportedFormatException is NOT a subclass of ValueError; catch it separately
+- Tested on Python 3.10+ only; behavior on 3.9 is unknown
 """
 
 from markitdown._markitdown import MarkItDown, DocumentConverter, ConversionResult, StreamInfo
