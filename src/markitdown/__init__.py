@@ -10,10 +10,18 @@ Personal notes:
 - Commonly used with: MarkItDown().convert("file.pdf").text_content
 - For batch processing, reuse the same MarkItDown() instance (avoids re-init overhead)
 - StreamInfo is also useful when converting from in-memory buffers (pass mime_type explicitly)
+- UnsupportedFormatException is handy for graceful error handling in batch jobs
 """
 
 from markitdown._markitdown import MarkItDown, DocumentConverter, ConversionResult, StreamInfo
 
+# Try to import the exception class for convenience in calling code
+try:
+    from markitdown._markitdown import UnsupportedFormatException
+    __all__ = ["MarkItDown", "DocumentConverter", "ConversionResult", "StreamInfo", "UnsupportedFormatException"]
+except ImportError:
+    # Older versions may not have this; fail gracefully
+    __all__ = ["MarkItDown", "DocumentConverter", "ConversionResult", "StreamInfo"]
+
 __version__ = "0.1.0"
 __author__ = "Microsoft (original), personal fork for learning"
-__all__ = ["MarkItDown", "DocumentConverter", "ConversionResult", "StreamInfo"]
