@@ -12,6 +12,7 @@ Personal notes:
 - StreamInfo is also useful when converting from in-memory buffers (pass mime_type explicitly)
 - UnsupportedFormatException is handy for graceful error handling in batch jobs
 - When converting HTML, pass mlm_client=None explicitly to skip any LLM image description calls
+- text_content can be None if conversion fails silently; always guard with `or ""`
 """
 
 from markitdown._markitdown import MarkItDown, DocumentConverter, ConversionResult, StreamInfo
