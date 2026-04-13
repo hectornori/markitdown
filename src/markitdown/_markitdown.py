@@ -70,7 +70,7 @@ class MarkItDown:
             HtmlConverter,
         )
 
-        self.register_converter(["text/plain", ".txt", ".md"], PlainTextConverter())
+        self.register_converter(["text/plain", ".txt", ".md", ".rst"], PlainTextConverter())
         self.register_converter(["text/html", ".html", ".htm"], HtmlConverter())
 
     def register_converter(
@@ -97,60 +97,4 @@ class MarkItDown:
             **kwargs: Additional options forwarded to the underlying converter.
 
         Returns:
-            A DocumentConverterResult containing the Markdown text.
-
-        Raises:
-            FileNotFoundError: If a local file path does not exist.
-            ValueError: If no suitable converter is found for the source.
-        """
-        source = str(source)
-
-        # Determine if source is a URL or a local path
-        parsed = urlparse(source)
-        if parsed.scheme in ("http", "https"):
-            return self._convert_url(source, **kwargs)
-
-        local_path = os.path.abspath(source)
-        if not os.path.exists(local_path):
-            raise FileNotFoundError(f"File not found: {local_path}")
-
-        return self._convert_local(local_path, **kwargs)
-
-    def _convert_local(
-        self, local_path: str, **kwargs
-    ) -> DocumentConverterResult:
-        """Attempt conversion of a local file using registered converters."""
-        mime_type, _ = mimetypes.guess_type(local_path)
-        extension = Path(local_path).suffix.lower()
-
-        for matchers, converter in reversed(self._converters):
-            if extension in matchers or (mime_type and mime_type in matchers):
-                result = converter.convert(local_path, **kwargs)
-                if result is not None:
-                    return result
-
-        raise ValueError(
-            f"No converter found for file: {local_path} "
-            f"(mime={mime_type}, ext={extension})"
-        )
-
-    def _convert_url(
-        self, url: str, **kwargs
-    ) -> DocumentConverterResult:
-        """Download and convert a URL to Markdown."""
-        import urllib.request
-        import tempfile
-
-        with urllib.request.urlopen(url) as response:  # noqa: S310
-            content_type = response.headers.get_content_type()
-            suffix = mimetypes.guess_extension(content_type) or ".html"
-            with tempfile.NamedTemporaryFile(
-                delete=False, suffix=suffix
-            ) as tmp_file:
-                tmp_file.write(response.read())
-                tmp_path = tmp_file.name
-
-        try:
-            return self._convert_local(tmp_path, **kwargs)
-        finally:
-            os.unlink(tmp_path)
+           
