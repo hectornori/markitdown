@@ -20,6 +20,8 @@ Personal notes:
 - UnsupportedFormatException is NOT a subclass of ValueError; catch it separately
 - Tested on Python 3.10+ only; behavior on 3.9 is unknown
 - NOTE: __version__ below reflects my fork version, not upstream's release version
+- FileNotFoundError is raised (not UnsupportedFormatException) when the path doesn't exist;
+  worth catching both in batch jobs
 """
 
 from markitdown._markitdown import MarkItDown, DocumentConverter, ConversionResult, StreamInfo
