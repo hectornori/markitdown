@@ -19,6 +19,7 @@ Personal notes:
     text = (result.text_content or "").strip()
 - UnsupportedFormatException is NOT a subclass of ValueError; catch it separately
 - Tested on Python 3.10+ only; behavior on 3.9 is unknown
+- NOTE: __version__ below reflects my fork version, not upstream's release version
 """
 
 from markitdown._markitdown import MarkItDown, DocumentConverter, ConversionResult, StreamInfo
@@ -31,6 +32,6 @@ except ImportError:
     # Older versions may not have this; fail gracefully
     __all__ = ["MarkItDown", "DocumentConverter", "ConversionResult", "StreamInfo"]
 
-__version__ = "0.1.0"
+__version__ = "0.1.0-personal"
 __author__ = "Microsoft (original), personal fork for learning"
 # Last synced with upstream: 2025-01-10
