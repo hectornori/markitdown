@@ -25,17 +25,17 @@ classifiers = [
 ]
 dependencies = [
     "beautifulsoup4>=4.11",
-    "requests>=2n    "markify>=0.11.0",
+    "requests>=2.28",
+    "markify>=0.11.0",
     "chardet>=5.0.0",
 ]
 
 [project.optional-dependencies]
-pdf = ["20221105"]
-docx = ["python-docx>=0.8.11"]
+pdf = ["pdfminer.six>=20221105"]
+docx = [8.11"]
 xlsx = ["openpyxl>=3.0.10"]
-pptx = ["python-pptx>=0.6.21"]
-audio = ["openai-whisper"]
-all = [
+pptx = ["python.21"]
+audio = [nall = [
     "pdfminer.six>=20221105",
     "python-docx>=0.8.11",
     "openpyxl>=3.0.10",
