@@ -22,6 +22,8 @@ Personal notes:
 - NOTE: __version__ below reflects my fork version, not upstream's release version
 - FileNotFoundError is raised (not UnsupportedFormatException) when the path doesn't exist;
   worth catching both in batch jobs
+- __all__ now includes 'StreamInfo' explicitly so `from markitdown import *` works cleanly
+  in scripts that build StreamInfo objects manually (e.g. for BytesIO conversions)
 """
 
 from markitdown._markitdown import MarkItDown, DocumentConverter, ConversionResult, StreamInfo
