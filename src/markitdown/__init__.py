@@ -24,6 +24,8 @@ Personal notes:
   worth catching both in batch jobs
 - __all__ now includes 'StreamInfo' explicitly so `from markitdown import *` works cleanly
   in scripts that build StreamInfo objects manually (e.g. for BytesIO conversions)
+- MissingDependencyException also exists in newer upstream versions; worth catching if
+  running in environments where optional deps (e.g. pptx, docx) may not be installed
 """
 
 from markitdown._markitdown import MarkItDown, DocumentConverter, ConversionResult, StreamInfo
@@ -35,6 +37,13 @@ try:
 except ImportError:
     # Older versions may not have this; fail gracefully
     __all__ = ["MarkItDown", "DocumentConverter", "ConversionResult", "StreamInfo"]
+
+# Also expose MissingDependencyException if available (added in newer upstream versions)
+try:
+    from markitdown._markitdown import MissingDependencyException
+    __all__ = __all__ + ["MissingDependencyException"]
+except ImportError:
+    pass  # Not available in this version; safe to ignore
 
 __version__ = "0.1.0-personal"
 __author__ = "Microsoft (original), personal fork for learning"
